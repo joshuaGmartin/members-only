@@ -3,7 +3,15 @@ const user = require("../models/user");
 const passwordUtil = require("../lib/passwordUtil");
 
 const validateUser = [
-  body("username").trim().notEmpty().withMessage("Must include username"),
+  body("username")
+    .trim()
+    .notEmpty()
+    .withMessage("Must include username")
+    .custom(async (value) => {
+      const foundUser = await user.findByUsername(value);
+      if (foundUser) throw new Error("Username already exists");
+      return true;
+    }),
   body("password")
     .trim()
     // .notEmpty()

@@ -12,3 +12,16 @@ module.exports.createUser = async function (username, password) {
   const result = await pgPool.query(query, values);
   return result.rows[0];
 };
+
+module.exports.findByUsername = async function (username) {
+  const query = `
+    SELECT * FROM users
+    WHERE username = $1
+    ;
+  `;
+  // default is non-member, non-admin
+  const values = [username];
+
+  const result = await pgPool.query(query, values);
+  return result.rows[0];
+};
