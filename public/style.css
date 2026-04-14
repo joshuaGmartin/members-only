@@ -1,9 +1,14 @@
 :root {
-  --padding: 1rem;
+  --spacing: 1rem;
 }
 
 body {
-  padding: 0 var(--padding);
+  padding: 0 var(--spacing);
+
+  * {
+    /* debugging */
+    /* outline: red solid 1px; */
+  }
 }
 
 header {
@@ -19,4 +24,67 @@ header {
       margin: 0;
     }
   }
+}
+
+main {
+  padding-top: var(--spacing);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin: 0 auto;
+  margin-top: 5rem;
+  width: max-content;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    max-width: fit-content;
+  }
+
+  h2 {
+    margin: 0;
+    text-align: center;
+  }
+
+  input {
+    width: 15rem;
+  }
+
+  button {
+    width: fit-content;
+    align-self: center;
+
+    margin-top: var(--spacing);
+  }
+
+  .password-input-line {
+    display: flex;
+
+    position: relative;
+
+    .show-password-button {
+      position: absolute;
+      left: calc(100% + 0.5rem);
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+/* ======================================================================================= */
+/* Catch All */
+/* ======================================================================================= */
+
+.unselectable {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard syntax */
 }
