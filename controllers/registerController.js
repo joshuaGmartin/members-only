@@ -1,5 +1,6 @@
 const { body, matchedData, validationResult } = require("express-validator");
 const user = require("../models/user");
+const passwordUtil = require("../lib/passwordUtil");
 
 const validateUser = [
   body("username").trim().notEmpty().withMessage("Must include username"),
@@ -43,7 +44,6 @@ module.exports.postRegister = [
   // will run without async, but good form to wait before redirect
   async function (req, res) {
     const errors = validationResult(req);
-    console.log(errors);
 
     if (!errors.isEmpty()) {
       const values = req.body;
@@ -53,7 +53,10 @@ module.exports.postRegister = [
         values: values,
       });
     }
-    // await user.createUser(req.body.username, req.body.password);
+    const { username, password } = matchedData(req); // gets sanitized data from the validation checks
+    const hashedPassword = await passwordUtil.hashPassword(password);
+
+    await user.createUser(username, hashedPassword);
 
     res.redirect("/login");
   },
