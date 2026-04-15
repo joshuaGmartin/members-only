@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="/js/eventListeners.js" defer></script>
+    <title>Login</title>
+  </head>
+  <body>
+    <%- include("partials/header") %>
+    <main>
+      <form action="/login" method="post">
+        <h2>Create an Account</h2>
+        <%- include("partials/errors") %>
+        <label for="username"
+          >Username<input
+            type="text"
+            name="username"
+            id="username"
+            value="<%= locals.values?.username %>"
+            required
+        /></label>
+        <label for="password"
+          >Password
+          <div class="password-input-line">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value="<%= locals.values?.password %>"
+              required
+            />
+            <span class="show-password-button unselectable">Show</span>
+          </div>
+        </label>
+
+        <button type="submit">Login</button>
+      </form>
+    </main>
+  </body>
+</html>

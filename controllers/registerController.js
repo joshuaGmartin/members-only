@@ -8,8 +8,8 @@ const validateUser = [
     .notEmpty()
     .withMessage("Must include username")
     .custom(async (value) => {
-      const foundUser = await user.findByUsername(value);
-      if (foundUser) throw new Error("Username already exists");
+      const userMatch = await user.findByUsername(value);
+      if (userMatch) throw new Error("Username already exists");
       return true;
     }),
   body("password")
@@ -40,7 +40,6 @@ const validateUser = [
       }
       return true;
     }),
-  ,
 ];
 
 module.exports.getRegister = function (req, res) {

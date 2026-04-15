@@ -25,3 +25,16 @@ module.exports.findByUsername = async function (username) {
   const result = await pgPool.query(query, values);
   return result.rows[0];
 };
+
+module.exports.findByUserID = async function (userID) {
+  const query = `
+    SELECT * FROM users
+    WHERE id = $1
+    ;
+  `;
+  // default is non-member, non-admin
+  const values = [userID];
+
+  const result = await pgPool.query(query, values);
+  return result.rows[0];
+};
