@@ -1,0 +1,5 @@
+//redirect to home if no logged in
+module.exports.isAuthCheck = function (req, res, next) {
+  if (!res.locals.isAuth) return res.redirect("/");
+  next();
+};

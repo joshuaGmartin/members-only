@@ -1,1 +1,1 @@
-- register link on login page?
+- redirect to home if no logged in (middleware on app.js?)

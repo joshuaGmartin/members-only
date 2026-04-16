@@ -41,27 +41,27 @@ require("./config/passport");
 app.use(passport.session());
 
 // ==========================================================================
-// routes
+// variables/middleware
 // ==========================================================================
-const routes = require("./routes");
-
-// global variables
+//globals
 app.use((req, res, next) => {
   res.locals.isAuth = req.isAuthenticated();
   res.locals.user = req.user;
   next();
 });
 
+// ==========================================================================
+// routes
+// ==========================================================================
+const routes = require("./routes");
+
 app.use(routes);
 
 // ==========================================================================
-// 404
+// 404/errors
 // ==========================================================================
 app.use((req, res) => res.send("404: Page not found"));
 
-// ==========================================================================
-// errors
-// ==========================================================================
 app.use((err, req, res, next) => {
   console.log(err);
   res.status(err.statusCode || 500).send(err.message);
