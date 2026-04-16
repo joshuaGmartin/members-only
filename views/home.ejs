@@ -8,6 +8,11 @@
   </head>
   <body>
     <%- include("partials/header") %>
-    <h1>Home</h1>
+    <% if (locals.isAuth) { %>
+    <p>
+      Welcome, <b><%= locals.user.username %></b>! You are logged in
+    </p>
+
+    <% } %>
   </body>
 </html>

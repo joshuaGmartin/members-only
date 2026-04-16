@@ -1,5 +1,4 @@
 const { body, matchedData, validationResult } = require("express-validator");
-const passwordUtil = require("../lib/passwordUtil");
 const passport = require("passport");
 
 const validateUser = [
@@ -11,8 +10,8 @@ module.exports.getLogin = function (req, res) {
   res.render("login");
 };
 
-module.exports.postLogin = (req, res, next) => {
-  passport.authenticate("local", { session: false }, (err, user, info) => {
+const auth = (req, res, next) =>
+  passport.authenticate("local", (err, user, info) => {
     if (err) return next(err);
 
     if (!user) {
@@ -25,6 +24,34 @@ module.exports.postLogin = (req, res, next) => {
       });
     }
 
-    res.redirect("/");
+    req.login(user, (err) => {
+      if (err) return next(err);
+
+      return res.redirect("/");
+    });
   })(req, res, next);
-};
+
+module.exports.postLogin = [
+  validateUser,
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const values = req.body;
+
+      return res.render("login", {
+        errors: errors.array(),
+        values: values,
+      });
+    }
+
+    next();
+  },
+  auth,
+];
+
+// wanted custom username/password errors on login form. The above allows for a callback but requires manual login
+// module.exports.postLogin = passport.authenticate("local", {
+//   failureRedirect: "/login",
+//   successRedirect: "/",
+// });

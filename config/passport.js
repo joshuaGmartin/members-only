@@ -7,7 +7,8 @@ async function verifyCallback(username, password, done) {
   try {
     const userMatch = await user.findByUsername(username);
 
-    if (!userMatch) return done(null, false, { message: "Incorrect username" });
+    if (!userMatch)
+      return done(null, false, { message: "Username does not exist" });
 
     const isValid = await validatePassword(password, userMatch.password);
     if (!isValid) return done(null, false, { message: "Incorrect password" });
@@ -23,16 +24,16 @@ const strategy = new LocalStrategy(verifyCallback);
 //init
 passport.use(strategy);
 
-// passport.serializeUser((user, done) => {
-//   done(null, user.id);
-// });
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
 
-// passport.deserializeUser(async (userID, done) => {
-//   try {
-//     const userMatch = await user.findByUserID(userID);
+passport.deserializeUser(async (userID, done) => {
+  try {
+    const userMatch = await user.findByUserID(userID);
 
-//     done(null, userMatch);
-//   } catch (err) {
-//     done(err);
-//   }
-// });
+    done(null, userMatch);
+  } catch (err) {
+    done(err);
+  }
+});

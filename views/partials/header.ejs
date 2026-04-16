@@ -3,12 +3,42 @@
     <h1>Stevens Point Community Forum</h1>
   </a>
   <nav>
-    <a href="/register">Register</a> | <a href="/login">Login</a> |
+    <!-- if no logged in, show register and login -->
+    <% if(!locals.isAuth) { %>
+    <a href="/register">Register</a>
+    <span class="nav-seperator">|</span>
+    <a href="/login">Login</a>
+    <span class="nav-seperator">|</span>
+    <% } %>
+
+    <% if(locals.isAuth) { %>
+    <!-- is logged in and not member (or admin), show become member -->
+    <% if((!locals.user.is_member) || locals.user.is_admin) { %>
+    <a href="/member-register">Become a Member</a>
+    <span class="nav-seperator">|</span>
+    <% } %>
+
+    <!-- is logged in, is a member, and is not an admin (or admin), show become admin -->
+    <% if((locals.user.is_member && !locals.user.is_admin) || locals.user.is_admin) { %>
+    <a href="/admin-register">Become an Admin</a>
+    <span class="nav-seperator">|</span>
+    <% } %>
+
+    <!-- is logged in, show logout -->
+    <form action="/logout" method="post" id="logout-form">
+      <button type="submit" id="logout-button" class="link-style">
+        Logout
+      </button>
+    </form>
+    <span class="nav-seperator">|</span>
+    <% } %>
+
+    <!-- always show source -->
     <a
       href="https://github.com/joshuaGmartin/members-only"
       target="_blank"
       rel="noopener noreferrer"
-      >Source</a
-    >
+      >Source
+    </a>
   </nav>
 </header>

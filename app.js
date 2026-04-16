@@ -1,7 +1,4 @@
 const express = require("express");
-// const session = require("express-session");
-// const pgSession = require("connect-pg-simple")(session);
-// const pgPool = require("./config/database");
 require("dotenv").config();
 
 // ==========================================================================
@@ -18,31 +15,42 @@ app.use(express.urlencoded({ extended: true }));
 // ==========================================================================
 // session
 // ==========================================================================
-// const sessionStore = new pgSession({ pool: pgPool });
+const session = require("express-session");
+const pgSession = require("connect-pg-simple")(session);
+const pgPool = require("./config/database");
 
-// app.use(
-//   session({
-//     secret: process.env.COOKIE_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     store: sessionStore,
-//     cookie: {
-//       maxAge: 100 * 60 * 60 * 24, // 1 day
-//     },
-//   }),
-// );
+const sessionStore = new pgSession({ pool: pgPool });
+
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+    cookie: {
+      maxAge: 100 * 60 * 60 * 24, // 1 day
+    },
+  }),
+);
 
 // ==========================================================================
 // authentication
 // ==========================================================================
+const passport = require("passport");
 require("./config/passport");
-// app.use(passport.session());
+app.use(passport.session());
 
 // ==========================================================================
 // routes
 // ==========================================================================
 const routes = require("./routes");
-const passport = require("passport");
+
+// global variables
+app.use((req, res, next) => {
+  res.locals.isAuth = req.isAuthenticated();
+  res.locals.user = req.user;
+  next();
+});
 
 app.use(routes);
 
@@ -69,3 +77,7 @@ app.listen(PORT, (err) => {
 
   console.log("Express app listening on port: ", PORT);
 });
+
+// ==========================================================================
+// testing
+// ==========================================================================
