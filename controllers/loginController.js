@@ -1,4 +1,4 @@
-const { body, matchedData, validationResult } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 const passport = require("passport");
 
 const validateUser = [
@@ -10,6 +10,7 @@ module.exports.getLogin = function (req, res) {
   res.render("login");
 };
 
+// function auth(req, res, next) {
 const auth = (req, res, next) =>
   passport.authenticate("local", (err, user, info) => {
     if (err) return next(err);
@@ -29,10 +30,11 @@ const auth = (req, res, next) =>
 
       return res.redirect("/");
     });
-  })(req, res, next);
+  })(req, res, next); // passport.authenticate returns a function that needs to be called with wrapper function's (auth) parameters
 
 module.exports.postLogin = [
   validateUser,
+  // function (req, res, next) {
   (req, res, next) => {
     const errors = validationResult(req);
 

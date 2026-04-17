@@ -4,11 +4,11 @@ const memberRegisterController = require("../controllers/memberRegisterControlle
 // ==========================================================================
 // get routes
 // ==========================================================================
-// memberRegisterRouter.get("/", memberRegisterController.getMemberRegister);
+memberRegisterRouter.get("/", memberRegisterController.getMemberRegister);
 
 // ==========================================================================
 // post routes
 // ==========================================================================
-// memberRegisterRouter.post("/", memberRegisterController.postMemberRegister);
+memberRegisterRouter.post("/", memberRegisterController.postMemberRegister);
 
 module.exports.memberRegisterRouter = memberRegisterRouter;

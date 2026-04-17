@@ -97,6 +97,49 @@ form {
   }
 }
 
+#member-register-form {
+  width: 25rem;
+  max-width: 100%;
+  .quiz-questions-container {
+    padding: 0;
+
+    text-align: center;
+    .quiz-question {
+      padding-bottom: 2rem;
+
+      > * {
+        margin-bottom: 0.5rem;
+      }
+
+      label {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hint-section {
+        display: flex;
+        flex-direction: column;
+
+        .show-hint-button {
+          align-self: center;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .hint {
+          display: none;
+        }
+      }
+    }
+  }
+
+  button {
+    margin: 0;
+  }
+}
+
 /* ======================================================================================= */
 /* Catch All */
 /* ======================================================================================= */
