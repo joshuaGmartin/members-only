@@ -13,11 +13,23 @@ module.exports.createUser = async function (username, password) {
   return result.rows[0];
 };
 
+module.exports.makeUserMember = async function (userID) {
+  const query = `
+    UPDATE users
+    SET is_member = true
+    WHERE id = $1
+    RETURNING *;
+  `;
+  const values = [userID];
+
+  const result = await pgPool.query(query, values);
+  return result.rows[0];
+};
+
 module.exports.findByUsername = async function (username) {
   const query = `
     SELECT * FROM users
-    WHERE username = $1
-    ;
+    WHERE username = $1;
   `;
   // default is non-member, non-admin
   const values = [username];
@@ -29,8 +41,7 @@ module.exports.findByUsername = async function (username) {
 module.exports.findByUserID = async function (userID) {
   const query = `
     SELECT * FROM users
-    WHERE id = $1
-    ;
+    WHERE id = $1;
   `;
   // default is non-member, non-admin
   const values = [userID];

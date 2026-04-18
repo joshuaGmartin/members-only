@@ -1,1 +1,1 @@
-- redirect to home if no logged in (middleware on app.js?)
+- post member in db and redirect on quiz success

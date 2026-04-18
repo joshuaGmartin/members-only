@@ -1,5 +1,6 @@
 const { body, validationResult } = require("express-validator");
 const memberQuiz = require("../lib/memberQuiz");
+const user = require("../models/user");
 
 // this only checks for right answers to pass to validation
 function validateQuiz() {
@@ -56,6 +57,12 @@ module.exports.postMemberRegister = [
       });
     }
 
-    res.redirect("/member-success");
+    await user.makeUserMember(req.user.id);
+
+    res.redirect("/member-register/member-success");
   },
 ];
+
+module.exports.getMemberRegisterSuccess = (req, res) => {
+  res.render("member-success");
+};
