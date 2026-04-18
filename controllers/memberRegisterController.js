@@ -1,19 +1,20 @@
 const { body, validationResult } = require("express-validator");
-// const user = require("../models/user");
-// const passwordUtil = require("../lib/passwordUtil");
+const memberQuiz = require("../lib/memberQuiz");
 
+// this only checks for right answers to pass to validation
 function validateQuiz() {
   let quizChecks = [];
+  const quiz = memberQuiz.createQuiz();
 
   for (const [q, qData] of Object.entries(quiz)) {
+    //create array of validation middlewares to run on post
     quizChecks.push(
       body(q)
         .trim()
-        // .notEmpty()
-        // .withMessage("Must include username")
         .custom((value) => {
-          if (value !== qData.a) {
-            throw new Error(`Question #${q.slice(1)} is incorrect`);
+          if (value.toLowerCase() !== qData.a.toLowerCase()) {
+            // still need error(s) to attach to req for quiz validation
+            throw new Error();
           }
           return true;
         }),
@@ -23,60 +24,9 @@ function validateQuiz() {
   return quizChecks;
 }
 
-const quiz = {
-  q1: {
-    q: `"I hate Illinois ___________."`,
-    a: "Nazis",
-    hint: `"We're on a mission from God."`,
-  },
-  q2: {
-    q: `"Heeeeeeere's ___________!"`,
-    a: "Johnny",
-    hint: `"Perhaps... they need a good... talking to... if you don't mind my saying so."`,
-  },
-  q3: {
-    q: `"It's a ___________!"`,
-    a: "trap",
-    hint: `"I've got a bad feeling about this..."`,
-  },
-  q4: {
-    q: `"African or ___________?..."`,
-    a: "European",
-    hint: `"What's your favorite color?"`,
-  },
-  q5: {
-    q: `"You've got ___________ on you."`,
-    a: "red",
-    hint: `"Thanks, Babe."`,
-  },
-  q6: {
-    q: `"Say '___________' again! I dare you!"`,
-    a: "what",
-    hint: `"Ah man, I shot Marvin in the face."`,
-  },
-  q7: {
-    q: `"He chose... ___________."`,
-    a: "poorly",
-    hint: `"It belongs in a museum!"`,
-  },
-  q8: {
-    q: `"How ___________, is it not?!"`,
-    a: "beautiful",
-    hint: `"Vi Veri Veniversum Vivus Vici."`,
-  },
-  q9: {
-    q: `"Boil 'em, mash 'em, stick 'em in a ___________."`,
-    a: "stew",
-    hint: `"Looks like meat's back on the menu, boys!"`,
-  },
-  q10: {
-    q: `"I gotcha you for three minutes. Three minutes of ___________!"`,
-    a: "playtime",
-    hint: `"I missed the part where that's my problem"`,
-  },
-};
-
 module.exports.getMemberRegister = function (req, res) {
+  const quiz = memberQuiz.createQuiz();
+
   res.render("member-register", { quiz: quiz });
 };
 
@@ -97,15 +47,15 @@ module.exports.postMemberRegister = [
 
     if (!errors.isEmpty()) {
       const values = req.body;
+      const gradedQuiz = memberQuiz.checkQuiz(values);
 
       return res.render("member-register", {
         errors: errors.array(),
         values: values,
-        quiz: quiz,
+        quiz: gradedQuiz,
       });
     }
-    // await user.createUser(username, hashedPassword);
 
-    res.redirect("/login");
+    res.redirect("/member-success");
   },
 ];

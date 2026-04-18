@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="/js/eventListeners.js" defer></script>
+    <script>
+      // inject quiz into html to grab for bypassing in eventListener.js
+      window.quizData = <%- JSON.stringify(locals.quiz) %>;
+    </script>
     <title>Member Register</title>
   </head>
   <body>
@@ -13,11 +17,21 @@
       <form action="/member-register" method="post" id="member-register-form">
         <h2>Prove your worth</h2>
         <h3>Finish the following movie quotes...</h3>
-        <%- include("partials/errors") %>
+        <%- // include("partials/errors") %>
+        <% if (locals.errors) { %>
+        <ul class="form-errors">
+          <li>Perfect score required</li>
+        </ul>
+        <% } %>
 
         <ol class="quiz-questions-container">
           <% for (const [q, qData] of Object.entries(locals.quiz)) { %>
           <li class="quiz-question">
+            <% if (qData.error) { %>
+            <div class="quote-error">
+              <i>"Do or do not, There is no try"</i>
+            </div>
+            <% } %>
             <label for="<%= q %>"><%= qData.q %></label>
             <div class="hint-section">
               <span class="show-hint-button">Show Hint</span>
@@ -40,6 +54,7 @@
         </ol>
 
         <button type="submit">Submit</button>
+        <button id="demo-bypass">Demo Bypass</button>
       </form>
     </main>
   </body>

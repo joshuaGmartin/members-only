@@ -6,6 +6,7 @@
 
 body {
   padding: 0 var(--spacing);
+  /* margin: 0; */
 
   * {
     /* debugging */
@@ -45,6 +46,10 @@ main {
   padding-top: var(--spacing);
 }
 
+/* ======================================================================================= */
+/* Forms */
+/* ======================================================================================= */
+
 form {
   display: flex;
   flex-direction: column;
@@ -56,7 +61,8 @@ form {
   width: max-content;
 
   .form-errors {
-    align-self: start;
+    align-self: center;
+    padding-left: 0;
   }
 
   label {
@@ -100,15 +106,27 @@ form {
 #member-register-form {
   width: 25rem;
   max-width: 100%;
+
+  margin-bottom: 5rem;
+
   .quiz-questions-container {
     padding: 0;
 
     text-align: center;
+
     .quiz-question {
       padding-bottom: 2rem;
 
+      &:last-child {
+        padding-bottom: 0;
+      }
+
       > * {
         margin-bottom: 0.5rem;
+      }
+
+      .quote-error {
+        color: red;
       }
 
       label {

@@ -24,6 +24,7 @@ if (path === "/register") {
 // /member-register
 // ============================================================================
 if (path === "/member-register") {
+  // ============ show hints ============
   const hintSections = document.querySelectorAll(".hint-section");
 
   hintSections.forEach((hintSection) => {
@@ -36,5 +37,38 @@ if (path === "/member-register") {
     });
   });
 
-  //reveal hint
+  // ============ focus on first error ============
+  document.addEventListener("DOMContentLoaded", () => {
+    // get first
+    const firstErrorQuote = document.querySelectorAll(".quote-error")[0];
+    if (firstErrorQuote) {
+      const firstErrorQuestion = firstErrorQuote.parentElement;
+      const firstErrorInput = firstErrorQuestion.querySelector("input");
+
+      firstErrorInput.focus();
+      firstErrorInput.select();
+    }
+  });
+
+  // ============ bypass quiz ============
+  const bypassButton = document.getElementById("demo-bypass");
+
+  bypassButton.addEventListener("click", (e) => {
+    // no submit
+    e.preventDefault();
+
+    // reveal answers
+    const quiz = window.quizData;
+    const allInputs = document.querySelectorAll("input");
+
+    allInputs.forEach((input) => {
+      input.value = quiz[input.id].a;
+    });
+
+    // reveal hints
+    const allShowHintBtns = document.querySelectorAll(".show-hint-button");
+    allShowHintBtns.forEach((showHintBtn) => {
+      showHintBtn.click();
+    });
+  });
 }
