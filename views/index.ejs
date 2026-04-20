@@ -8,11 +8,20 @@
   </head>
   <body>
     <%- include("partials/header") %>
-    <% if (locals.isAuth) { %>
-    <p>
-      Welcome, <b><%= locals.user.username %></b>! You are logged in
-    </p>
 
-    <% } %>
+    <!-- move to header -->
+    <!-- <p>
+      Welcome, <b><%= // locals.user.username %></b>! You are logged in
+    </p> -->
+    <div id="main-welcome-message" class="welcome-message">
+      <h2>Welcome!</h2>
+      <div class="text">
+        <p>Please login or register an account to view the forum</p>
+      </div>
+      <div class="buttons">
+        <a href="/login"><button>Login</button></a>
+        <a href="/register/guest"><button>Register</button></a>
+      </div>
+    </div>
   </body>
 </html>
