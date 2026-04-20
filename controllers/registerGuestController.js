@@ -42,11 +42,11 @@ const validateUser = [
     }),
 ];
 
-module.exports.getRegister = function (req, res) {
-  res.render("register");
+module.exports.getRegisterGuest = function (req, res) {
+  res.render("register/guest");
 };
 
-module.exports.postRegister = [
+module.exports.postRegisterGuest = [
   validateUser,
   // will run without async, but good form to wait before redirect
   async function (req, res) {
@@ -55,7 +55,7 @@ module.exports.postRegister = [
     if (!errors.isEmpty()) {
       const values = req.body;
 
-      return res.render("register", {
+      return res.render("register/guest", {
         errors: errors.array(),
         values: values,
       });

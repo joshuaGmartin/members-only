@@ -25,13 +25,13 @@ function validateQuiz() {
   return quizChecks;
 }
 
-module.exports.getMemberRegister = function (req, res) {
+module.exports.getRegisterMember = function (req, res) {
   const quiz = memberQuiz.createQuiz();
 
-  res.render("member-register", { quiz: quiz });
+  res.render("register/member", { quiz: quiz });
 };
 
-module.exports.postMemberRegister = [
+module.exports.postRegisterMember = [
   async (req, res, next) => {
     const validators = validateQuiz();
 
@@ -50,7 +50,7 @@ module.exports.postMemberRegister = [
       const values = req.body;
       const gradedQuiz = memberQuiz.checkQuiz(values);
 
-      return res.render("member-register", {
+      return res.render("register/member", {
         errors: errors.array(),
         values: values,
         quiz: gradedQuiz,
@@ -59,10 +59,6 @@ module.exports.postMemberRegister = [
 
     await user.makeUserMember(req.user.id);
 
-    res.redirect("/member-register/member-success");
+    res.redirect("/member/welcome");
   },
 ];
-
-module.exports.getMemberRegisterSuccess = (req, res) => {
-  res.render("member-success");
-};

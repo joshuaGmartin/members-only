@@ -1,14 +1,26 @@
 const registerRouter = require("express").Router();
-const registerController = require("../controllers/registerController");
+const registerGuestController = require("../controllers/registerGuestController");
+const registerMemberController = require("../controllers/registerMemberController");
+const middleware = require("../middleware/middleware");
 
 // ==========================================================================
 // get routes
 // ==========================================================================
-registerRouter.get("/", registerController.getRegister);
+registerRouter.get("/guest", registerGuestController.getRegisterGuest);
+registerRouter.get(
+  "/member",
+  middleware.isAuthCheck,
+  registerMemberController.getRegisterMember,
+);
 
 // ==========================================================================
 // post routes
 // ==========================================================================
-registerRouter.post("/", registerController.postRegister);
+registerRouter.post("/guest", registerGuestController.postRegisterGuest);
+registerRouter.post(
+  "/member",
+  middleware.isAuthCheck,
+  registerMemberController.postRegisterMember,
+);
 
 module.exports.registerRouter = registerRouter;

@@ -8,11 +8,11 @@
     <title>Register</title>
   </head>
   <body>
-    <%- include("partials/header") %>
+    <%- include("../partials/header") %>
     <main>
-      <form action="/register" method="post">
+      <form action="/register/guest" method="post">
         <h2>Create an Account</h2>
-        <%- include("partials/errors") %>
+        <%- include("../partials/errors") %>
         <label for="username"
           >Username<input
             type="text"

@@ -1,1 +1,5 @@
-- post member in db and redirect on quiz success
+- update folder structure for register and member
+    - update relative paths
+    - and routes
+
+- refactor landing page to login elements or messages page

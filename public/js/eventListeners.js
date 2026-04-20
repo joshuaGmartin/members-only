@@ -1,9 +1,9 @@
 const path = window.location.pathname;
 
 // ============================================================================
-// /register
+// /register/guest or /login
 // ============================================================================
-if (path === "/register") {
+if (path === "/register/guest" || path === "/login") {
   const btn = document.querySelector(".show-password-button");
   const passwordInputs = document.querySelectorAll('input[type="password"]');
 
@@ -21,9 +21,9 @@ if (path === "/register") {
 }
 
 // ============================================================================
-// /member-register
+// /register/member
 // ============================================================================
-if (path === "/member-register") {
+if (path === "/register/member") {
   // ============ show hints ============
   const hintSections = document.querySelectorAll(".hint-section");
 

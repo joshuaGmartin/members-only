@@ -3,8 +3,7 @@ const homeRouter = require("./homeRouter").homeRouter;
 const registerRouter = require("./registerRouter").registerRouter;
 const loginRouter = require("./loginRouter").loginRouter;
 const logoutRouter = require("./logoutRouter").logoutRouter;
-const memberRegisterRouter =
-  require("./memberRegisterRouter").memberRegisterRouter;
+const memberRouter = require("./memberRouter").memberRouter;
 
 const middleware = require("../middleware/middleware");
 
@@ -13,6 +12,11 @@ router.use("/", homeRouter);
 router.use("/register", registerRouter);
 router.use("/login", loginRouter);
 router.use("/logout", logoutRouter);
-router.use("/member-register", middleware.isAuthCheck, memberRegisterRouter);
+router.use(
+  "/member",
+  middleware.isAuthCheck,
+  middleware.isMemberCheck,
+  memberRouter,
+);
 
 module.exports = router;
