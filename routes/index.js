@@ -4,6 +4,7 @@ const registerRouter = require("./registerRouter").registerRouter;
 const loginRouter = require("./loginRouter").loginRouter;
 const logoutRouter = require("./logoutRouter").logoutRouter;
 const memberRouter = require("./memberRouter").memberRouter;
+const messagesRouter = require("./messagesRouter").messagesRouter;
 
 const middleware = require("../middleware/middleware");
 
@@ -18,5 +19,6 @@ router.use(
   middleware.isMemberCheck,
   memberRouter,
 );
+router.use("/messages", middleware.isAuthCheck, messagesRouter);
 
 module.exports = router;

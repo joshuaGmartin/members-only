@@ -7,6 +7,8 @@ const validateUser = [
 ];
 
 module.exports.getLogin = function (req, res) {
+  if (res.locals.isAuth) return res.redirect("/messages");
+
   res.render("login");
 };
 
