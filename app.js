@@ -52,10 +52,10 @@ app.use((req, res, next) => {
 });
 
 // //debug
-app.use((req, res, next) => {
-  console.log(res.locals.user);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(res.locals.user);
+//   next();
+// });
 
 // ==========================================================================
 // routes

@@ -11,6 +11,15 @@ CREATE TABLE messages (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     user_id INTEGER,
     title VARCHAR(255), 
-    text VARCHAR(255),
-    time TIMESTAMP
+    text TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+
+INSERT INTO messages (user_id, title, text, time)
+VALUES ( 16, 'test1', 'hello world!', NOW() );
+
+
+INSERT INTO messages (user_id, title, text, time)
+VALUES ( 17, 'test2', 'albatross!', NOW() );
