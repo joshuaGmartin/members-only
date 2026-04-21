@@ -11,27 +11,33 @@
 
     <main>
       <a href="/messages/new">Add to the discussion</a>
-      <div class="messages-container">
-        <% locals.messages.forEach(message => { %>
-        <div class="message-container">
-          <h2><%= message.title%></h2>
-          <div class="info">
-            <%= message.username %> - <i><%= message.time_ago %></i>
-          </div>
-          <div class="text-container">
-            <!-- if not member, no show full message -->
-            <% if (!locals.user.is_member) { %>
-            <div class="text"><%= message.text.slice(0,50) %>...</div>
-            <div class="membre-require-block">
-              <a href="register/member">Become a member</a> to read more!
+      <div id="main-container">
+        <div class="film-pattern"></div>
+
+        <div id="messages-container">
+          <% locals.messages.forEach(message => { %>
+          <div class="message-container">
+            <h2><%= message.title%></h2>
+            <div class="info">
+              <b><%= message.username %></b> - <i><%= message.time_ago %></i>
             </div>
-            <% } %>
-            <% if (locals.user.is_member) { %>
-            <div class="text"><%= message.text %></div>
-            <% } %>
+            <div class="text-container">
+              <!-- if not member, no show full message -->
+              <% if (!locals.user.is_member) { %>
+              <div class="text"><%= message.text.slice(0,50) %>...</div>
+              <div class="member-require-block">
+                <a href="register/member">Become a member</a> to read more!
+              </div>
+              <% } %>
+              <% if (locals.user.is_member) { %>
+              <div class="text"><%= message.text %></div>
+              <% } %>
+            </div>
           </div>
+          <% }); %>
         </div>
-        <% }); %>
+
+        <div class="film-pattern"></div>
       </div>
     </main>
   </body>

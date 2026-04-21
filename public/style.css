@@ -5,8 +5,7 @@
 }
 
 body {
-  padding: 0 var(--spacing);
-  /* margin: 0; */
+  margin: 0;
 
   * {
     /* debugging */
@@ -18,6 +17,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  position: sticky;
+
+  padding: 0 var(--spacing);
+  border-bottom: 1px solid black;
 
   #site-logo {
     color: black;
@@ -186,6 +190,65 @@ form {
     display: flex;
     flex-direction: column;
     gap: var(--spacing);
+  }
+}
+
+#main-container {
+  max-width: 40rem;
+  margin: 0 auto;
+
+  display: flex;
+
+  .film-pattern {
+    width: 2rem;
+
+    --film-spacing: 15px;
+
+    background-image: linear-gradient(
+      black var(--film-spacing),
+      transparent var(--film-spacing)
+    );
+    background-size: 100% calc(var(--film-spacing) * 2);
+    background-repeat: repeat-y;
+
+    --film-border: 10px solid black;
+
+    border-left: var(--film-border);
+    border-right: var(--film-border);
+  }
+
+  #messages-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+
+    padding: var(--spacing);
+
+    width: 100%;
+    background-color: black;
+
+    .message-container {
+      background-color: white;
+
+      padding: var(--spacing);
+      border-radius: 5px;
+
+      h2 {
+        margin: 0;
+      }
+
+      .info {
+        font-size: small;
+      }
+
+      .text {
+        margin: var(--spacing) 0;
+      }
+
+      .member-require-block {
+        text-align: end;
+      }
+    }
   }
 }
 
