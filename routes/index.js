@@ -5,6 +5,7 @@ const loginRouter = require("./loginRouter").loginRouter;
 const logoutRouter = require("./logoutRouter").logoutRouter;
 const memberRouter = require("./memberRouter").memberRouter;
 const messagesRouter = require("./messagesRouter").messagesRouter;
+const adminRouter = require("./adminRouter").adminRouter;
 
 const middleware = require("../middleware/middleware");
 
@@ -20,5 +21,11 @@ router.use(
   memberRouter,
 );
 router.use("/messages", middleware.isAuthCheck, messagesRouter);
+router.use(
+  "/admin",
+  middleware.isAuthCheck,
+  middleware.isAdminCheck,
+  adminRouter,
+);
 
 module.exports = router;

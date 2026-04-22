@@ -36,6 +36,33 @@
               <div class="text"><%= message.text %></div>
               <% } %>
             </div>
+
+            <!-- admin controls -->
+            <% if(locals.user.is_admin) { %>
+            <form
+              class="admin-controls-message"
+              action="/admin/message-delete"
+              method="post"
+            >
+              <input
+                type="text"
+                name="message_id"
+                value="<%= message.message_id %>"
+                hidden
+              />
+              <button
+                type="submit"
+                onclick="
+                  return confirm(
+                    'Delete message id: <%= message.message_id %>?',
+                  );
+                "
+                class="link-style"
+              >
+                Delete
+              </button>
+            </form>
+            <% } %>
           </div>
           <% }); %>
         </div>

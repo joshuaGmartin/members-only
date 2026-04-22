@@ -3,7 +3,7 @@ const { formatDistanceToNow } = require("date-fns");
 
 module.exports.getAllMessages = async () => {
   const query = `
-    SELECT * FROM messages
+    SELECT *, messages.id as message_id FROM messages
     JOIN users ON user_id = users.id
     ORDER BY created_at DESC;
   `;
@@ -32,4 +32,15 @@ module.exports.createNewMessage = async (userID, title, text) => {
 
   const result = await pgPool.query(query, values);
   return result.rows[0];
+};
+
+module.exports.deleteMessage = async (userID) => {
+  const query = `
+    DELETE FROM messages 
+    WHERE id = ($1);
+  `;
+  const values = [userID];
+
+  await pgPool.query(query, values);
+  return;
 };

@@ -349,3 +349,11 @@ main {
   gap: var(--spacing);
   margin-bottom: var(--spacing);
 }
+
+.admin-controls-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+
+  margin: 0;
+}
