@@ -1,4 +1,4 @@
-const { body, matchedData, validationResult } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 const passport = require("passport");
 
 module.exports.postLogout = function (req, res) {

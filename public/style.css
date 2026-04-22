@@ -18,7 +18,10 @@ header {
   justify-content: space-between;
   align-items: center;
 
+  background-color: white;
+
   position: sticky;
+  top: 0;
 
   padding: 0 var(--spacing);
   border-bottom: 1px solid black;
@@ -166,6 +169,22 @@ form {
   }
 }
 
+#new-message-form {
+  max-width: 35rem;
+  width: 100%;
+
+  label,
+  input,
+  textarea {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  textarea {
+    height: 20rem;
+  }
+}
+
 /* ======================================================================================= */
 /* Blocks */
 /* ======================================================================================= */
@@ -243,12 +262,28 @@ form {
 
       .text {
         margin: var(--spacing) 0;
+
+        white-space: pre-wrap;
       }
 
       .member-require-block {
         text-align: end;
       }
     }
+  }
+}
+
+#add-message-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  gap: 0.5rem;
+
+  p {
+    text-align: center;
+    margin: 0;
+
+    font-size: small;
   }
 }
 
@@ -277,4 +312,13 @@ button {
   &:hover {
     cursor: pointer;
   }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: var(--spacing);
+  margin-bottom: var(--spacing);
 }

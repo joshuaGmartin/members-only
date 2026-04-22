@@ -21,3 +21,15 @@ module.exports.getAllMessages = async () => {
 
   return rows;
 };
+
+module.exports.createNewMessage = async (userID, title, text) => {
+  const query = `
+    INSERT INTO messages (user_id, title, text) 
+    VALUES ($1, $2, $3)
+    RETURNING *;  
+  `;
+  const values = [userID, title, text];
+
+  const result = await pgPool.query(query, values);
+  return result.rows[0];
+};
