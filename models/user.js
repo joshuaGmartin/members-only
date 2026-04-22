@@ -26,6 +26,19 @@ module.exports.makeUserMember = async function (userID) {
   return result.rows[0];
 };
 
+module.exports.makeUserAdmin = async function (userID) {
+  const query = `
+    UPDATE users
+    SET is_admin = true
+    WHERE id = $1
+    RETURNING *;
+  `;
+  const values = [userID];
+
+  const result = await pgPool.query(query, values);
+  return result.rows[0];
+};
+
 module.exports.findByUsername = async function (username) {
   const query = `
     SELECT * FROM users

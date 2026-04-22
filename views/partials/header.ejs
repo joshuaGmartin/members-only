@@ -25,7 +25,7 @@
 
     <!-- is logged in, is a member, and is not an admin (or admin), show become admin -->
     <% if((locals.user.is_member && !locals.user.is_admin) || locals.user.is_admin) { %>
-    <a href="/admin-register">Become an Admin</a>
+    <a href="/member/admin-register">Become an Admin</a>
     <span class="nav-seperator">|</span>
     <% } %>
     <% } %>

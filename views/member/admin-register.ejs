@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Admin Register | filmsnerds</title>
+  </head>
+  <body>
+    <%- include("../partials/header") %>
+
+    <main>
+      <form
+        action="/member/admin-register"
+        method="post"
+        id="admin-register-form"
+      >
+        <h2>Register for Admin Privileges</h2>
+        <h3>Answer the following...</h3>
+        <% if (locals.errors) { %>
+        <ul class="form-errors">
+          <li>Your answers are unsatisfactory</li>
+        </ul>
+        <% } %>
+
+        <ol class="quiz-questions-container">
+          <li class="quiz-question">
+            <p>Are you supposed to be an admin?</p>
+            <div class="radios">
+              <label for="q1a">
+                <input type="radio" name="q1" id="q1a" value="true" required />
+                For sure, bro
+              </label>
+              <label for="q1b">
+                <input type="radio" name="q1" id="q1b" value="false" required />
+                ehh...
+              </label>
+            </div>
+          </li>
+
+          <li class="quiz-question">
+            <p>Are you sure?</p>
+            <div class="radios">
+              <label for="q2a">
+                <input type="radio" name="q2" id="q2a" value="true" required />
+                Youuuuu betcha
+              </label>
+              <label for="q2b">
+                <input type="radio" name="q2" id="q2b" value="false" required />
+                On second thought...
+              </label>
+            </div>
+          </li>
+
+          <li class="quiz-question">
+            <p>Are you aware that liars go to hell?</p>
+            <div class="radios">
+              <label for="q3a">
+                <input type="radio" name="q3" id="q3a" value="true" required />
+                oh... um... yes?
+              </label>
+              <label for="q3b">
+                <input type="radio" name="q3" id="q3b" value="false" required />
+                *gulp*
+              </label>
+            </div>
+          </li>
+        </ol>
+
+        <button type="submit">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>
