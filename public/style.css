@@ -100,15 +100,20 @@ form {
 
   .password-input-line {
     display: flex;
+    align-items: center;
 
     position: relative;
 
     .show-password-button {
       position: absolute;
       left: calc(100% + 0.5rem);
+      padding: 0 0.5rem;
+
+      transition: box-shadow 0.3s ease;
 
       &:hover {
         cursor: pointer;
+        box-shadow: 0 0 0 1px black;
       }
     }
   }
@@ -122,6 +127,7 @@ form {
 
   .quiz-questions-container {
     padding: 0;
+    /* width: fit-content; */
 
     text-align: center;
 
@@ -151,9 +157,13 @@ form {
 
         .show-hint-button {
           align-self: center;
+          padding: 0 0.5rem;
+
+          transition: box-shadow 0.3s ease;
 
           &:hover {
             cursor: pointer;
+            box-shadow: 0 0 0 1px black;
           }
         }
 
@@ -204,7 +214,7 @@ form {
 
           input {
             width: fit-content;
-            margin: 0 0.5rem;
+            margin: 0;
           }
         }
       }
@@ -336,8 +346,19 @@ form {
 }
 
 button {
-  &:hover {
+  background-color: white;
+  border: 1px black solid;
+
+  font-size: 1rem;
+
+  transition:
+    color 0.1s ease,
+    background-color 0.1s ease;
+
+  &:hover:not(.link-style) {
     cursor: pointer;
+    color: white;
+    background-color: black;
   }
 }
 
