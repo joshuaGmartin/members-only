@@ -3,6 +3,10 @@
 
   font-family: sans-serif;
   color: black;
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 body {
@@ -143,8 +147,14 @@ form {
 
 #member-register-form {
   width: 25rem;
+  max-width: calc(100vw - 2rem);
+  padding: 0 var(--spacing);
 
   margin-bottom: 5rem;
+
+  h3 {
+    text-align: center;
+  }
 
   .quiz-questions-container {
     padding: 0;
@@ -190,6 +200,7 @@ form {
 
         .hint {
           display: none;
+          max-width: calc(100vw - 2rem);
         }
       }
     }
@@ -201,18 +212,20 @@ form {
 }
 
 #new-message-form {
-  width: 35rem;
-  max-width: calc(100vw - var(--spacing) * 2);
+  width: calc(100vw - var(--spacing) * 2);
+  max-width: 35rem;
 
-  label,
-  input,
-  textarea {
+  label {
     max-width: 100%;
     width: 100%;
-  }
 
-  textarea {
-    height: 20rem;
+    input {
+      width: calc(100%);
+    }
+
+    textarea {
+      height: 20rem;
+    }
   }
 }
 
