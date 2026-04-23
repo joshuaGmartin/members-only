@@ -4,36 +4,37 @@
   </a>
   <nav>
     <% if(locals.isAuth) { %>
-    Welcome,
-    <%= locals.user.username %>!
-    <span id="logout-button">
-      (
-      <form action="/logout" method="post" id="logout-form">
-        <button type="submit" id="logout-button" class="link-style">
-          logout
-        </button>
-      </form>
-      )
-    </span>
-    <span class="nav-seperator">|</span>
+    <div class="header-user-logout">
+      <span id="header-user"> Hi, <%= locals.user.username %>! </span>
+      <span id="logout-button">
+        (
+        <form action="/logout" method="post" id="logout-form">
+          <button type="submit" id="logout-button" class="link-style">
+            logout
+          </button>
+        </form>
+        )
+      </span>
+    </div>
+    <span class="nav-seperator"></span>
 
     <!-- is logged in and not member (or admin), show become member -->
     <% if(!locals.user.is_member) { %>
     <a href="/register/member">Become a Member</a>
-    <span class="nav-seperator">|</span>
+    <span class="nav-seperator"></span>
     <% } %>
 
     <!-- is logged in, is a member, and is not an admin (or admin), show become admin -->
     <% if(locals.user.is_member && !locals.user.is_admin) { %>
     <a href="/member/admin-register">Become an Admin</a>
-    <span class="nav-seperator">|</span>
+    <span class="nav-seperator"></span>
     <% } %>
 
     <!-- is logged in, is admin, show admin -->
     <% if(locals.user.is_admin) { %>
     <a href="/admin/dashboard">Admin</a>
+    <span class="nav-seperator"></span>
     <% } %>
-    <span class="nav-seperator">|</span>
     <% } %>
 
     <!-- always show source -->

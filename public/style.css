@@ -2,6 +2,7 @@
   --spacing: 1rem;
 
   font-family: sans-serif;
+  color: black;
 }
 
 body {
@@ -17,6 +18,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--spacing);
 
   background-color: white;
 
@@ -25,6 +27,10 @@ header {
 
   padding: 0 var(--spacing);
   border-bottom: 1px solid black;
+
+  > * {
+    text-align: center;
+  }
 
   #site-logo {
     color: black;
@@ -39,14 +45,30 @@ header {
     display: flex;
     gap: 0.5rem;
 
-    #logout-button {
+    a:last-child {
+      align-self: center;
+    }
+
+    .nav-seperator {
+      width: 1px;
+      background-color: black;
+    }
+
+    .header-user-logout {
       display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
 
-      #logout-form {
-        margin-top: 0;
+      #logout-button {
+        display: flex;
 
-        #logout-button {
+        #logout-form {
           margin-top: 0;
+
+          #logout-button {
+            margin-top: 0;
+          }
         }
       }
     }
@@ -121,7 +143,6 @@ form {
 
 #member-register-form {
   width: 25rem;
-  max-width: 100%;
 
   margin-bottom: 5rem;
 
@@ -180,8 +201,8 @@ form {
 }
 
 #new-message-form {
-  max-width: 35rem;
-  width: 100%;
+  width: 35rem;
+  max-width: calc(100vw - var(--spacing) * 2);
 
   label,
   input,
@@ -357,6 +378,7 @@ form {
 button {
   background-color: white;
   border: 1px black solid;
+  color: black;
 
   font-size: 1rem;
 
@@ -386,4 +408,17 @@ main {
   justify-content: end;
 
   margin: 0;
+}
+
+/* ======================================================================================= */
+/* Catch All */
+/* ======================================================================================= */
+
+@media (max-width: 480px) {
+  header {
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 0.5rem;
+  }
 }

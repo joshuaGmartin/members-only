@@ -14,7 +14,7 @@ async function postDeleteMessage(req, res) {
 async function postReset(req, res) {
   await seedBD();
 
-  res.redirect("/messages");
+  res.redirect("/");
 }
 
 module.exports = { getAdminDashboard, postDeleteMessage, postReset };

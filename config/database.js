@@ -94,11 +94,7 @@ async function seedBD() {
       '2026-04-22 00:00:00.000000'),
 
       (6, 'hey gang!',
-      'im jeremiah and im here to say that my favorite movies of all time are:
-
-      1. The scorpion king 2: rise of the warrior (specifically on blu ray)
-      2. the sam Raimi spiderman trilogy (but just the last one)
-      3. anything with Robert Pattinson ;)',
+      E'im jeremiah and im here to say that my favorite movies of all time are:\n\n1. The scorpion king 2: rise of the warrior (specifically on blu ray)\n2. the sam Raimi spiderman trilogy (but just the last one)\n3. anything with Robert Pattinson ;)',
       '2026-04-23 00:00:00.000000');
   `;
 
