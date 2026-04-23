@@ -1,4 +1,4 @@
-const pgPool = require("../config/database");
+const { pgPool } = require("../config/database");
 const { formatDistanceToNow } = require("date-fns");
 
 module.exports.getAllMessages = async () => {

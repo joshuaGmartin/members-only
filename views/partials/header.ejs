@@ -18,16 +18,22 @@
     <span class="nav-seperator">|</span>
 
     <!-- is logged in and not member (or admin), show become member -->
-    <% if((!locals.user.is_member) || locals.user.is_admin) { %>
+    <% if(!locals.user.is_member) { %>
     <a href="/register/member">Become a Member</a>
     <span class="nav-seperator">|</span>
     <% } %>
 
     <!-- is logged in, is a member, and is not an admin (or admin), show become admin -->
-    <% if((locals.user.is_member && !locals.user.is_admin) || locals.user.is_admin) { %>
+    <% if(locals.user.is_member && !locals.user.is_admin) { %>
     <a href="/member/admin-register">Become an Admin</a>
     <span class="nav-seperator">|</span>
     <% } %>
+
+    <!-- is logged in, is admin, show admin -->
+    <% if(locals.user.is_admin) { %>
+    <a href="/admin/dashboard">Admin</a>
+    <% } %>
+    <span class="nav-seperator">|</span>
     <% } %>
 
     <!-- always show source -->

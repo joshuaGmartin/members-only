@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 // ==========================================================================
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
-const pgPool = require("./config/database");
+const { pgPool } = require("./config/database");
 
 const sessionStore = new pgSession({ pool: pgPool });
 

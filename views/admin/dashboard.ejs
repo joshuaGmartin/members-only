@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Admin Dashboard | filmnerds</title>
+  </head>
+  <body>
+    <%- include("../partials/header") %>
+
+    <main>
+      <div id="admin-tools-container">
+        <h2>Admin Tools</h2>
+        <ul>
+          <li>
+            <form action="/admin/reset" method="post" class="admin-tool-form">
+              <button
+                type="submit"
+                class="link-style"
+                onclick="
+                  return confirm('Reseed app data (including yourself)?');
+                "
+              >
+                Reset App
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>

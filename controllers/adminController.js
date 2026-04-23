@@ -1,4 +1,9 @@
 const message = require("../models/message");
+const { seedBD } = require("../config/database");
+
+function getAdminDashboard(req, res) {
+  res.render("admin/dashboard");
+}
 
 async function postDeleteMessage(req, res) {
   await message.deleteMessage(req.body.message_id);
@@ -6,4 +11,10 @@ async function postDeleteMessage(req, res) {
   res.redirect("/messages");
 }
 
-module.exports = { postDeleteMessage };
+async function postReset(req, res) {
+  await seedBD();
+
+  res.redirect("/messages");
+}
+
+module.exports = { getAdminDashboard, postDeleteMessage, postReset };
