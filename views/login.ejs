@@ -21,8 +21,11 @@
             value="<%= locals.values?.username %>"
             required
         /></label>
-        <label for="password"
-          >Password
+        <label for="password">
+          <div class="password-label-show-container">
+            Password
+            <span class="show-password-button unselectable">Show</span>
+          </div>
           <div class="password-input-line">
             <input
               type="password"
@@ -31,11 +34,13 @@
               value="<%= locals.values?.password %>"
               required
             />
-            <span class="show-password-button unselectable">Show</span>
           </div>
         </label>
 
-        <button type="submit" class="submit-button">Login</button>
+        <div class="buttons">
+          <button type="submit" class="submit-button">Login</button>
+          <button id="demo-password-button">Fill Demo Password</button>
+        </div>
       </form>
     </main>
   </body>

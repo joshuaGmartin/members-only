@@ -37,8 +37,8 @@ async function seedBD() {
       ('xmcarol', 'demo_pass', TRUE, FALSE),
       ('sorrydave', 'demo_pass', TRUE, FALSE),
       ('nuwanda', 'demo_pass', TRUE, FALSE),
-      ('agentlebowski', 'demo_pass', TRUE, FALSE),
-      ('josh', '$2b$12$vFGinY9BWhOdBOzr6ES.e.l0QOByBGtzH5acIXZ9rs4gPCvpWG92S', TRUE, TRUE);
+      ('agentle.bowski', 'demo_pass', TRUE, FALSE),
+      ('josh', '$2b$12$0r4M8BPIxIEQ1EBop.cJfOqJ4bTDg2DcWX3l9xRZ16S6.9C4MQWU6', TRUE, TRUE);
 
     INSERT INTO messages (user_id, title, text, created_at) VALUES
       (1, 'Signal Pattern',
@@ -90,7 +90,7 @@ async function seedBD() {
       '2023-01-01 00:00:00.000000'),
 
       (5, 'The greatest of all time?',
-      'Sam Raimi''s Spiderman trilogy is the great set of movies of all time.' || E'\n\n' || 'Prove me wrong...',
+      'Sam Raimi''s Spiderman trilogy is the greatest set of movies of all time.' || E'\n\n' || 'That is all.',
       '2026-04-22 00:00:00.000000'),
 
       (6, 'hey gang!',

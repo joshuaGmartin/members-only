@@ -4,20 +4,50 @@ const path = window.location.pathname;
 // /register/guest or /login
 // ============================================================================
 if (path === "/register/guest" || path === "/login") {
-  const btn = document.querySelector(".show-password-button");
-  const passwordInputs = document.querySelectorAll('input[type="password"]');
+  // ============ show password ============
+  function showPassword() {
+    const btn = document.querySelector(".show-password-button");
+    const passwordInputs = document.querySelectorAll('input[type="password"]');
 
-  if (btn && passwordInputs) {
-    btn.addEventListener("click", () => {
-      passwordInputs.forEach((passwordInput) => {
-        if (passwordInput.type === "password") {
-          passwordInput.type = "text";
-        } else {
-          passwordInput.type = "password";
+    if (btn && passwordInputs) {
+      btn.addEventListener("click", () => {
+        passwordInputs.forEach((passwordInput) => {
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+          } else {
+            passwordInput.type = "password";
+          }
+        });
+      });
+    }
+  }
+  showPassword();
+
+  // ============ fill demo password ============
+  function fillDemoPassword() {
+    const btn = document.getElementById("demo-password-button");
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("confirm-password");
+
+    if (btn) {
+      btn.addEventListener("click", (e) => {
+        console.log(passwordInput);
+        console.log(confirmPasswordInput);
+
+        // no submit
+        e.preventDefault();
+
+        const demoPassword = "!@#123QWEqwe";
+        passwordInput.value = demoPassword;
+        passwordInput.textContent = demoPassword;
+        if (confirmPasswordInput) {
+          confirmPasswordInput.value = demoPassword;
+          confirmPasswordInput.textContent = demoPassword;
         }
       });
-    });
+    }
   }
+  fillDemoPassword();
 }
 
 // ============================================================================

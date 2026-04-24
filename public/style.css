@@ -124,15 +124,11 @@ form {
     margin-top: var(--spacing);
   }
 
-  .password-input-line {
+  .password-label-show-container {
     display: flex;
-    align-items: center;
-
-    position: relative;
+    justify-content: space-between;
 
     .show-password-button {
-      position: absolute;
-      left: calc(100% + 0.5rem);
       padding: 0 0.5rem;
 
       transition: box-shadow 0.3s ease;
@@ -142,6 +138,13 @@ form {
         box-shadow: 0 0 0 1px black;
       }
     }
+  }
+
+  .password-input-line {
+    display: flex;
+    align-items: center;
+
+    position: relative;
   }
 }
 
@@ -276,14 +279,6 @@ form {
   a {
     display: block;
     text-align: center;
-  }
-}
-
-#main-welcome-message {
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing);
   }
 }
 
@@ -423,8 +418,18 @@ main {
   margin: 0;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+
+  #demo-password-button {
+    margin: 0;
+  }
+}
+
 /* ======================================================================================= */
-/* Catch All */
+/* Mobile */
 /* ======================================================================================= */
 
 @media (max-width: 480px) {
